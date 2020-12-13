@@ -11,7 +11,7 @@ var accountRoutes = express.Router();
 
 accountRoutes.get('/login', function(req, res){
     res.render('account/login');
-});
+}); 
 
 accountRoutes.get('/register', function(req, res){
     res.render('account/register', {errors: ""});
@@ -20,10 +20,7 @@ accountRoutes.get('/register', function(req, res){
 accountRoutes.post('/register', function(req,res){
     var matched_users_promise = models.User.findAll({
         where: Sequelize.or(
-            {username: req.body.username},
-            {unit: req.body.unit},
-            {ic: req.body.ic},
-            {role: req.body.role}
+            {username: req.body.username},   
         )
     });
     matched_users_promise.then(function(users){
@@ -37,13 +34,11 @@ accountRoutes.post('/register', function(req,res){
                 ic: req.body.ic,
                 role: req.body.role
             }).then(function(){
-                let newSession = req.session;
-                newSession.username = req.body.username;
-                res.redirect('/');
+                res.redirect('/register');
             });
         }
         else{
-            res.render('account/register',{errors: "Username or Email already in user"});
+            res.render('account/register',{errors: "Username already in use"});
         }
     })
 });
@@ -68,6 +63,7 @@ accountRoutes.post('/login', function(req,res){
         }
         else{
             res.redirect('/login');
+            console.log(error);
         }
     });
 });
