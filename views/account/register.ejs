@@ -15,161 +15,139 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="collapse navbar-collapse justify-content-center px-0" id="navbarNav">
-      <ul class="navbar-nav col-6">
-        <li class="nav-item col-2 text-center">
-          <a class="nav-link" href="#">Dashboard</a>
-        </li>
-        <li class="nav-item col-2 text-center">
-          <a class="nav-link" href="#">Announcement</a>
-        </li>
-        <li class="nav-item col-2 active text-center">
-          <a class="nav-link" href="#">Accounts</a>
-        </li>
-        <li class="nav-item col-2 text-center">
-          <a class="nav-link" href="#">Visitor Log</a>
-        </li>
-        <div class="col-3">
-        </div>
-        <li class="nav-item col-1 text-right pr-0">
-          <a class="nav-link" href="http://localhost:5000/login">Logout</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-<div class="container mb-5">
-    <form class="login-form" method="POST" action="/register" >
-        <h2 class="form-heading my-4">Create Account</h2>
-        <input name="username" type="text" class="form-control py-4" placeholder="Username"/>
-        <input name="password" type="password" class="form-control py-4" placeholder="Password" />
-        <input name="passwordConfirm" type="password" class="form-control py-4" placeholder="Password confirm" />
-        <input name="unit" type="text" class="form-control py-4" placeholder="Unit" />
-        <input name="ic" type="text" class="form-control py-4" placeholder="IC Number"/>
-        <div class="row">
-          <div class="col-8">
-            <input id="tenant" class="mr-2" type="radio" value="Tenant" name="role" />
-            <label class="align-middle mr-5" for="tenant">Tenant</label>
-            <input id="guard" class="mr-2" type="radio" value="Guard" name="role"/>
-            <label class="align-middle" for="guard">Guard</label>
+  <%- include('navbar.ejs')%>
+  <div class="container mb-5">
+      <form class="login-form" method="POST" action="/register" >
+          <h2 class="form-heading my-4">Create Account</h2>
+          <input name="username" type="text" class="form-control py-4" placeholder="Username"/>
+          <input name="password" type="password" class="form-control py-4" placeholder="Password" />
+          <input name="passwordConfirm" type="password" class="form-control py-4" placeholder="Password confirm" />
+          <input name="unit" type="text" class="form-control py-4" placeholder="Unit" />
+          <input name="ic" type="text" class="form-control py-4" placeholder="IC Number"/>
+          <div class="row">
+            <div class="col-8">
+              <input id="tenant" class="mr-2" type="radio" value="Tenant" name="role" />
+              <label class="align-middle mr-5" for="tenant">Tenant</label>
+              <input id="guard" class="mr-2" type="radio" value="Guard" name="role"/>
+              <label class="align-middle" for="guard">Guard</label>
+            </div>
+            <div class="col-4">
+              <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>  
+            </div>
           </div>
-          <div class="col-4">
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>  
-          </div>
-        </div>
-    </form>
-</div>
-
-<div class="container mt-5">
-  <div class="row mb-3">
-    <div class="col">
-      <h2 class="form-heading mt-4">Accounts</h2>
-    </div>
+      </form>
   </div>
 
-  <div class="row border bg-light py-3">
-    <div class="col-3">
-      <span>
-        Name
-      </span>
+  <div class="container mt-5">
+    <div class="row mb-3">
+      <div class="col">
+        <h2 class="form-heading mt-4">Accounts</h2>
+      </div>
     </div>
-    <div class="col-3">
-      <span>
-        Unit
-      </span>
-    </div><div class="col-3">
-      <span>
-        IC Number
-      </span>
-    </div><div class="col-3">
-      <span>
-        Role
-      </span>
+
+    <div class="row border bg-light py-3">
+      <div class="col-3">
+        <span>
+          Name
+        </span>
+      </div>
+      <div class="col-3">
+        <span>
+          Unit
+        </span>
+      </div><div class="col-3">
+        <span>
+          IC Number
+        </span>
+      </div><div class="col-3">
+        <span>
+          Role
+        </span>
+      </div>
     </div>
+
+    <div class="row border-bottom mt-3 py-3">
+      <div class="col-3">
+        <span>
+          John Doe
+        </span>
+      </div>
+      <div class="col-3">
+        <span>
+          13A-21
+        </span>
+      </div><div class="col-3">
+        <span>
+          999999-99-1234
+        </span>
+      </div><div class="col-3">
+        <span>
+          Tenant
+        </span>
+      </div>
+    </div>
+
+    <div class="row border-bottom mt-3 py-3">
+      <div class="col-3">
+        <span>
+          John Doe
+        </span>
+      </div>
+      <div class="col-3">
+        <span>
+          13A-21
+        </span>
+      </div><div class="col-3">
+        <span>
+          999999-99-1234
+        </span>
+      </div><div class="col-3">
+        <span>
+          Tenant
+        </span>
+      </div>
+    </div>
+    
+    <div class="row border-bottom mt-3 py-3">
+      <div class="col-3">
+        <span>
+          John Doe
+        </span>
+      </div>
+      <div class="col-3">
+        <span>
+          13A-21
+        </span>
+      </div><div class="col-3">
+        <span>
+          999999-99-1234
+        </span>
+      </div><div class="col-3">
+        <span>
+          Tenant
+        </span>
+      </div>
+    </div>
+
+
+
   </div>
 
-  <div class="row border-bottom mt-3 py-3">
-    <div class="col-3">
-      <span>
-        John Doe
-      </span>
-    </div>
-    <div class="col-3">
-      <span>
-        13A-21
-      </span>
-    </div><div class="col-3">
-      <span>
-        999999-99-1234
-      </span>
-    </div><div class="col-3">
-      <span>
-        Tenant
-      </span>
-    </div>
-  </div>
-
-  <div class="row border-bottom mt-3 py-3">
-    <div class="col-3">
-      <span>
-        John Doe
-      </span>
-    </div>
-    <div class="col-3">
-      <span>
-        13A-21
-      </span>
-    </div><div class="col-3">
-      <span>
-        999999-99-1234
-      </span>
-    </div><div class="col-3">
-      <span>
-        Tenant
-      </span>
-    </div>
-  </div>
-  
-  <div class="row border-bottom mt-3 py-3">
-    <div class="col-3">
-      <span>
-        John Doe
-      </span>
-    </div>
-    <div class="col-3">
-      <span>
-        13A-21
-      </span>
-    </div><div class="col-3">
-      <span>
-        999999-99-1234
-      </span>
-    </div><div class="col-3">
-      <span>
-        Tenant
-      </span>
-    </div>
-  </div>
+  <!-- /container -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
 
-
-</div>
-
-<!-- /container -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-
-
-<style>
-input{
-  margin-bottom: 15px
-}
-h2{
-  text-align: center
-}
-.container{
-  width:50%
-}
-</style>
+  <style>
+  input{
+    margin-bottom: 15px
+  }
+  h2{
+    text-align: center
+  }
+  .container{
+    width:50%
+  }
+  </style>
 
 </body>
 </html>
