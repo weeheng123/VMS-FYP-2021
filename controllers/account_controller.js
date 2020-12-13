@@ -21,7 +21,7 @@ accountRoutes.get('/register', function(req, res){
 accountRoutes.post('/register', function(req,res){
     var matched_users_promise = models.user.findAll({
         where: Sequelize.or(
-            {username: req.body.username},   
+            {username: req.body.username},
         )
     });
     matched_users_promise.then(function(users){
@@ -56,7 +56,7 @@ accountRoutes.post('/login', function(req,res){
             let passwordHash = user.password;
             if(bcrypt.compareSync(req.body.password, passwordHash)){
                 req.session.username = req.body.username;
-                res.redirect('/');
+                res.redirect('/register');
             }
             else{
                 res.redirect('/register');
