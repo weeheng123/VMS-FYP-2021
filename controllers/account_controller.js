@@ -5,51 +5,47 @@ var path = require('path');
 var session = require('express-session');
 var models = require('../models');
 var Sequelize = require('sequelize');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
+const { Connection } = require('pg');
 
 var accountRoutes = express.Router();
 
 accountRoutes.get('/login', function(req, res){
     res.render('account/login');
-});
+}); 
 
 accountRoutes.get('/register', function(req, res){
     res.render('account/register', {errors: ""});
 });
 
 accountRoutes.post('/register', function(req,res){
-    var matched_users_promise = models.User.findAll({
+    var matched_users_promise = models.user.findAll({
         where: Sequelize.or(
-            {username: req.body.username},
-            {unit: req.body.unit},
-            {ic: req.body.ic},
-            {role: req.body.role}
+            {username: req.body.username},   
         )
     });
     matched_users_promise.then(function(users){
         if(users.length == 0){
             const passwordHash = 
             bcrypt.hashSync(req.body.password, 10);
-            models.User.create({
+            models.user.create({
                 username: req.body.username,
                 password: passwordHash,
                 unit: req.body.unit,
                 ic: req.body.ic,
                 role: req.body.role
             }).then(function(){
-                let newSession = req.session;
-                newSession.username = req.body.username;
-                res.redirect('/');
+                res.redirect('/register');
             });
         }
         else{
-            res.render('account/register',{errors: "Username or Email already in user"});
+            res.render('account/register',{errors: "Username already in use"});
         }
     })
 });
 
 accountRoutes.post('/login', function(req,res){
-    var matched_users_promise = models.User.findAll({
+    var matched_users_promise = models.user.findAll({
         where: Sequelize.and(
             {username: req.body.username},
         )
@@ -68,6 +64,7 @@ accountRoutes.post('/login', function(req,res){
         }
         else{
             res.redirect('/login');
+            console.log(error);
         }
     });
 });
