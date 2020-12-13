@@ -5,7 +5,8 @@ var path = require('path');
 var session = require('express-session');
 var models = require('../models');
 var Sequelize = require('sequelize');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
+const { Connection } = require('pg');
 
 var accountRoutes = express.Router();
 
@@ -18,16 +19,16 @@ accountRoutes.get('/register', function(req, res){
 });
 
 accountRoutes.post('/register', function(req,res){
-    var matched_users_promise = models.User.findAll({
+    var matched_users_promise = models.user.findAll({
         where: Sequelize.or(
-            {username: req.body.username},   
+            {username: req.body.username},
         )
     });
     matched_users_promise.then(function(users){
         if(users.length == 0){
             const passwordHash = 
             bcrypt.hashSync(req.body.password, 10);
-            models.User.create({
+            models.user.create({
                 username: req.body.username,
                 password: passwordHash,
                 unit: req.body.unit,
@@ -44,7 +45,7 @@ accountRoutes.post('/register', function(req,res){
 });
 
 accountRoutes.post('/login', function(req,res){
-    var matched_users_promise = models.User.findAll({
+    var matched_users_promise = models.user.findAll({
         where: Sequelize.and(
             {username: req.body.username},
         )
@@ -55,7 +56,7 @@ accountRoutes.post('/login', function(req,res){
             let passwordHash = user.password;
             if(bcrypt.compareSync(req.body.password, passwordHash)){
                 req.session.username = req.body.username;
-                res.redirect('/');
+                res.redirect('/register');
             }
             else{
                 res.redirect('/register');
