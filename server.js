@@ -3,9 +3,15 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var app = express();
 
+//db dependencies
+//knex is SQL Query builder
+const kenx = require("knex");
+const db = require('./query');
+const { Client } = require('pg');
+const assert = require('assert');
+
 var AccountRoutes = require('./controllers/account_controller');
 var ancRoutes = require('./controllers/announcement_controller');
-const { Connection } = require('pg');
 
 var port = process.env.PORT || 5000;
 
@@ -13,10 +19,8 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
+
 // The session we will store in client’s browser cookies is encrypted using our session secret and only our web application which knows the session secret can read the session which we will create to store the current logged in user’s email address.
-
-//Get data from Database in Users table
-
 
 app.use(session({
     resave: false, 
