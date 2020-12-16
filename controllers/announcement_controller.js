@@ -8,7 +8,7 @@ var Sequelize = require('sequelize');
 var ancRoutes = express.Router();
 
 ancRoutes.get('/announcement', function(req, res){
-    res.render('announcement/announcement', {errors: ""});
+    res.render('announcement/announcement.ejs', {errors: ""});
 });
 
 ancRoutes.post('/announcement', function(req,res){
@@ -16,7 +16,7 @@ ancRoutes.post('/announcement', function(req,res){
                 title: req.body.title,
                 description: req.body.description
             }).then(function(){
-                res.redirect('/announcement');
+                res.redirect('/announcement.ejs');
             });
 });
 
