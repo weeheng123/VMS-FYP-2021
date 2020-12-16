@@ -139,6 +139,17 @@
     <% users.forEach(function(user){%>
     <li><%= user.id %></li>
     <li><%= user.username %></li>
+    <li>
+      <form method="POST" action="/user/delete/<%= user.id %>?_method=DELETE">
+        <input type="hidden" name="_method" value="delete">
+       <button type="submit">
+        <a
+        class="btn-floating btn-small waves-effect waves-light red"
+        ><i class="material-icons">delete</i></a
+      >
+       </button> 
+</form>
+    </li>
   <% }); %>
   </ul>
 
