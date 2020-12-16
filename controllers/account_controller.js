@@ -7,10 +7,19 @@ var models = require('../models');
 var Sequelize = require('sequelize');
 var kenx = require('knex');
 const bcrypt = require('bcrypt');
-const { Connection } = require('pg');
+const { Client } = require('pg');
+const user = require('../models/user');
+const methodOverride = require('method-override');
+
 
 var accountRoutes = express();
 //Change from express.Router() to express();
+
+// let users = [];
+
+accountRoutes.use(bodyParser.json()) // for parsing application/json
+accountRoutes.use(bodyParser.urlencoded({ extended: true }))
+accountRoutes.use(methodOverride('_method'));
 
 accountRoutes.get('/login', function(req, res){
     if (req.session.username){
@@ -51,6 +60,13 @@ accountRoutes.get('/register', function(req, res){
     else{
         res.redirect('/login');
     }
+})
+
+//Query database and DELETE data from database
+accountRoutes.delete("/user/delete/:id", (req, res) => {
+    client.select("*").from("users").where( { id: req.params.id }).del().then(function(){
+        res.redirect('/register');
+    });
 })
 
 accountRoutes.post('/register', function(req,res){
@@ -101,8 +117,12 @@ accountRoutes.post('/login', function(req,res){
         else{
             res.redirect('/login');
             console.log(error);
+            console.log("Might be user not found");
         }
     });
 });
     
-module.exports = {"AccountRoutes" : accountRoutes};
+module.exports = {
+    "AccountRoutes" : accountRoutes,
+    client
+};

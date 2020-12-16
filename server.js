@@ -26,7 +26,10 @@ app.use(session({
     resave: false, 
     saveUninitialized: true, 
     secret: 'aF,.j)wBhq+E9n#aHHZ91Ba!VaoMfC', 
-    cookie: { maxAge: 60 * 1000 }
+    cookie: { 
+      maxAge: 3600 * 1000,
+      expires: 12000
+    }
   }));
 
 app.use('/', AccountRoutes.AccountRoutes);
