@@ -38,7 +38,7 @@ ancRoutes.post('/announcement', function(req,res){
                 title: req.body.title,
                 description: req.body.description
             }).then(function(){
-                res.redirect('/announcement');
+                res.redirect('/announcement.ejs');
             });
 });
 

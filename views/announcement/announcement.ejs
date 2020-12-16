@@ -1,45 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="VMSUsers">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="description" content="BasicAuth">
     <meta name="author" content="siddub">
 
-    <title>VMS Login</title>
-
-	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>VMS Registration</title>
+  <title>Create a Jangle account</title>  <!-- Latest compiled and minified CSS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/5.1.1/bootstrap-social.min.css" rel="stylesheet" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
 
 </head>
 
 <body>
+  <%- include('../includes/navbar.ejs'); -%>
+  <div class="container mb-5">
 
-<div class="container">
-    <form method="POST" action="/login" >
-        <h2>Log In</h2>
-        <input name="username" type="text" class="form-control" placeholder="Username" autofocus="true"/>
-        <input name="password" type="password" class="form-control" placeholder="Password"/>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
+    
+      <form class="announcement-form" method="POST" action="/announcement" >  
+        <h2 class="form-heading my-4">Announcement</h2>
+          <div class="row"> 
+            <label class="col-2">Title:</label> 
+            <input name="username" type="text" class="form-control col-10 mx-auto" placeholder="Enter your Title"/>
+          </div> 
+          
+          <div class="row mb-4">
+            <label class="col-2">Description:</label>
+            <textarea class="form-control   col-10 pt-1"></textarea>
+          </div>
+
+          <div class="row justify-content-end">
+            <div class="col-4 pr-0">
+              <button class="btn btn-lg btn-primary btn-block" type="submit">Post</button>
+            </div>
+          </div>
+      </form>
+  </div>
+
+  <div class="container mt-5">
+    <div class="row mb-3">
+      <div class="col">
+        <h2 class="form-heading mt-4">Announcement List</h2>
+      </div>
+    </div>
+
+
+
+
+      <div class="row mb-3 border">
         
-        
-    </form>
-</div>
+        <div class="col-12 bg-light py-2"> 
+          <div class="row">
+            <span class="col-6">Water disruption </span>
+            <span class="col-6 text-right">16/12/2020</span>
+          </div>
+        </div>
+
+        <div class="col-12 py-2">
+          <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+        </div>
+
+        <div class="col-12">
+          <div class="row justify-content-end px-1 py-1 bg-light"> 
+            <button type="button" class="btn btn-light col-1 mx-1">Edit</button>
+            <button type="button" class="btn btn-light col-1 mx-1">Delete</button>
+          </div>  
+        </div>
+
+      </div>
+
+    
+
+  </div>
+
+  <!-- /container -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+
+  <style>
+  input{
+    margin-bottom: 15px
+  }
+  h2{
+    text-align: center
+  }
+  .container{
+    width:50%
+  }
+  </style>
+
 </body>
-
-<style>
-    input{
-      margin-bottom: 15px
-    }
-    h2{
-      text-align: center
-    }
-    .container{
-      width:50%
-    }
-</style>
 </html>
