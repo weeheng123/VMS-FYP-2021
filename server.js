@@ -12,6 +12,7 @@ const assert = require('assert');
 
 var AccountRoutes = require('./controllers/account_controller');
 var ancRoutes = require('./controllers/announcement_controller');
+const { MemoryStore } = require('express-session');
 
 var port = process.env.PORT || 5000;
 
@@ -26,9 +27,10 @@ app.use(session({
     resave: false, 
     saveUninitialized: true, 
     secret: 'aF,.j)wBhq+E9n#aHHZ91Ba!VaoMfC', 
+    store: new MemoryStore(),
     cookie: { 
-      maxAge: 3600 * 1000,
-      expires: 12000
+      maxAge:  Date.now() + (30 * 86400 * 1000) ,
+      expires:  Date.now() + (30 * 86400 * 1000) 
     }
   }));
 
