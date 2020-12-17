@@ -24,7 +24,7 @@ const client = kenx({
 ancRoutes.get('/announcement', function(req, res){
     if (req.session.username){
         client.select("*").from("announcements").then(data => {
-        res.render("announcement/announcement.ejs", {users: data});
+        res.render("announcement/announcement.ejs", {announcements  : data});
         console.log("Success");
         }).catch(err => res.status(400).json(err));
     }
