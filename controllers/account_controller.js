@@ -97,7 +97,7 @@ accountRoutes.post('/register', function(req,res){
 
 
 accountRoutes.post('/login', function(req,res){
-    var matched_users_promise = models.user.findAll({
+    var matched_users_promise = models.management.findAll({
         where: Sequelize.and(
             {username: req.body.username},
         )
@@ -115,9 +115,10 @@ accountRoutes.post('/login', function(req,res){
             }
         }
         else{
+            console.log("Might be user not found");
             res.redirect('/login');
             console.log(error);
-            console.log("Might be user not found");
+            
         }
     });
 });
