@@ -8,9 +8,12 @@
     <meta name="author" content="siddub">
 
     <title>VMS Registration</title>
-  <title>Create a Jangle account</title>  <!-- Latest compiled and minified CSS -->
+  <title>Create a Jangle account</title>  
+
+  <!-- Latest compiled and minified CSS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/915858e516.js" crossorigin="anonymous"></script>
 
 
 </head>
@@ -39,7 +42,7 @@
       </form>
   </div>
 
-  <div class="container mt-5">
+  <div class="container my-5">
     <div class="row mb-3">
       <div class="col">
         <h2 class="form-heading mt-4">Accounts</h2>
@@ -47,111 +50,76 @@
     </div>
 
     <div class="row border bg-light py-3">
-      <div class="col-3">
+      <div class="col-1 text-center">
+        <span>
+          No.
+        </span>
+      </div>
+      <div class="col-2 text-center">
         <span>
           Name
         </span>
       </div>
-      <div class="col-3">
+      <div class="col-2 text-center">
         <span>
           Unit
         </span>
-      </div><div class="col-3">
+      </div><div class="col-3 text-center">
         <span>
           IC Number
         </span>
-      </div><div class="col-3">
+      </div><div class="col-3 text-center">
         <span>
           Role
         </span>
       </div>
     </div>
 
-    <div class="row border-bottom mt-3 py-3">
-      <div class="col-3">
+    <% var count = 1 %> 
+    <% users.forEach(function(user){%>
+    <div class="row border-bottom py-3">
+      <div class="col-1 my-auto text-center">
         <span>
-          John Doe
+          <%= count %> 
         </span>
       </div>
-      <div class="col-3">
+      <div class="col-2 my-auto text-center">
         <span>
-          13A-21
-        </span>
-      </div><div class="col-3">
-        <span>
-          999999-99-1234
-        </span>
-      </div><div class="col-3">
-        <span>
-          Tenant
+          <%= user.username %>
         </span>
       </div>
-    </div>
-
-    <div class="row border-bottom mt-3 py-3">
-      <div class="col-3">
+      <div class="col-2 my-auto text-center">
         <span>
-          John Doe
+          <%= user.unit %>
         </span>
       </div>
-      <div class="col-3">
+      <div class="col-3 my-auto text-center">
         <span>
-          13A-21
-        </span>
-      </div><div class="col-3">
-        <span>
-          999999-99-1234
-        </span>
-      </div><div class="col-3">
-        <span>
-          Tenant
+          <%= user.ic %>
         </span>
       </div>
-    </div>
-    
-    <div class="row border-bottom mt-3 py-3">
-      <div class="col-3">
+      <div class="col-3 my-auto text-center">
         <span>
-          John Doe
+          <%= user.role %>
         </span>
       </div>
-      <div class="col-3">
-        <span>
-          13A-21
-        </span>
-      </div><div class="col-3">
-        <span>
-          999999-99-1234
-        </span>
-      </div><div class="col-3">
-        <span>
-          Tenant
-        </span>
+      <div class="col-1 pointer-hand pl-0">
+        <form action="/user/delete/<%= user.id %>?_method=DELETE" method="POST">
+          <input type="hidden" name="_method" value="delete">
+          <button type="submit" class="btn btn-danger">
+            <a>
+              <i class="far fa-trash-alt"></i>
+            </a>
+          </button>
+          
+        </form>
+        
       </div>
     </div>
+    <% count++; %> 
+    <% }); %>
 
   </div>
-
-  <h1>Users</h1>
-
-  <!--EJS code to get users from db-->
-  <ul>
-    <% users.forEach(function(user){%>
-    <li><%= user.id %></li>
-    <li><%= user.username %></li>
-    <li>
-      <form method="POST" action="/user/delete/<%= user.id %>?_method=DELETE">
-        <input type="hidden" name="_method" value="delete">
-       <button type="submit">
-        <a
-        class="btn-floating btn-small waves-effect waves-light red"
-        ><i class="material-icons">delete</i></a
-      >
-       </button> 
-</form>
-    </li>
-  <% }); %>
-  </ul>
 
   <!-- /container -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

@@ -11,6 +11,7 @@
   <title>Create a Jangle account</title>  <!-- Latest compiled and minified CSS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/915858e516.js" crossorigin="anonymous"></script>
 
 
 </head>
@@ -22,14 +23,14 @@
     
       <form class="announcement-form" method="POST" action="/announcement" >  
         <h2 class="form-heading my-4">Announcement</h2>
-          <div class="row"> 
-            <label class="col-2">Title:</label> 
-            <input name="username" type="text" class="form-control col-10 mx-auto" placeholder="Enter your Title"/>
+          <div class="row mb-3"> 
+            <span class="col-2 my-auto">Title:</span> 
+            <input name="username" type="text" class="form-control col-10 m-0" placeholder="Enter a title for the announcement"/>
           </div> 
           
           <div class="row mb-4">
-            <label class="col-2">Description:</label>
-            <textarea class="form-control   col-10 pt-1"></textarea>
+            <span class="col-2">Description:</span>
+            <textarea class="form-control col-10 pt-1" style="height: 120px;" placeholder="Enter a description for the announcemnet"></textarea>
           </div>
 
           <div class="row justify-content-end">
@@ -50,27 +51,34 @@
 
 
 
-      <div class="row mb-3 border">
-        
-        <div class="col-12 bg-light py-2"> 
-          <div class="row">
-            <span class="col-6">Water disruption </span>
-            <span class="col-6 text-right">16/12/2020</span>
+    <div class="row mb-3 border">
+      <div class="col-12 bg-light py-2"> 
+        <div class="row">
+          <h5 class="col-6 my-auto">Water disruption </h5>
+          <h5 class="col-6 text-right my-auto">16/12/2020</h5>
+        </div>
+      </div>
+
+      <div class="col-12 py-2">
+        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+      </div>
+
+      <div class="col-12">
+        <div class="row pb-3 justify-content-end">
+          <div class="col-2 pointer-hand text-right">
+            <form>
+              <input type="hidden" name="_method" value="delete">
+              <button type="submit" class="btn btn-danger">
+                <a>
+                  <i class="far fa-trash-alt"></i>
+                </a>
+              </button>
+            </form>
           </div>
         </div>
-
-        <div class="col-12 py-2">
-          <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
-        </div>
-
-        <div class="col-12">
-          <div class="row justify-content-end px-1 py-1 bg-light"> 
-            <button type="button" class="btn btn-light col-1 mx-1">Edit</button>
-            <button type="button" class="btn btn-light col-1 mx-1">Delete</button>
-          </div>  
-        </div>
-
       </div>
+
+    </div>
 
     
 
