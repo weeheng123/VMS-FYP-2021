@@ -25,12 +25,12 @@
         <h2 class="form-heading my-4">Announcement</h2>
           <div class="row mb-3"> 
             <span class="col-2 my-auto">Title:</span> 
-            <input name="username" type="text" class="form-control col-10 m-0" placeholder="Enter a title for the announcement"/>
+            <input name="title" type="text" class="form-control col-10 m-0" placeholder="Enter a title for the announcement"/>
           </div> 
           
           <div class="row mb-4">
             <span class="col-2">Description:</span>
-            <textarea class="form-control col-10 pt-1" style="height: 120px;" placeholder="Enter a description for the announcemnet"></textarea>
+            <textarea name="description" class="form-control col-10 pt-1" style="height: 120px;" placeholder="Enter a description for the announcemnet"></textarea>
           </div>
 
           <div class="row justify-content-end">
@@ -49,24 +49,23 @@
     </div>
 
 
-
-
+    <% announcements.forEach(function(announcement){%>
     <div class="row mb-3 border">
       <div class="col-12 bg-light py-2"> 
         <div class="row">
-          <h5 class="col-6 my-auto">Water disruption </h5>
-          <h5 class="col-6 text-right my-auto">16/12/2020</h5>
+          <h5 class="col-6 my-auto"><%= announcement.title %> </h5>
+          <h5 class="col-6 text-right my-auto"><%= announcement.createdAt %></h5>
         </div>
       </div>
 
       <div class="col-12 py-2">
-        <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+        <span><%= announcement.description %></span>
       </div>
 
       <div class="col-12">
         <div class="row pb-3 justify-content-end">
           <div class="col-2 pointer-hand text-right">
-            <form>
+            <form action="/anc/delete/<%= announcement.id %>?_method=DELETE" method="POST">
               <input type="hidden" name="_method" value="delete">
               <button type="submit" class="btn btn-danger">
                 <a>
@@ -77,9 +76,10 @@
           </div>
         </div>
       </div>
-
     </div>
+    <% }); %>
 
+  
     
 
   </div>
