@@ -5,18 +5,69 @@ var path = require('path');
 var session = require('express-session');
 var models = require('../models');
 var Sequelize = require('sequelize');
+var kenx = require('knex');
 const bcrypt = require('bcrypt');
-const { Connection } = require('pg');
+const { Client } = require('pg');
+const user = require('../models/user');
+const methodOverride = require('method-override');
 
-var accountRoutes = express.Router();
+
+var accountRoutes = express();
+//Change from express.Router() to express();
+
+// let users = [];
+
+accountRoutes.use(bodyParser.json()) // for parsing application/json
+accountRoutes.use(bodyParser.urlencoded({ extended: true }))
+accountRoutes.use(methodOverride('_method'));
 
 accountRoutes.get('/login', function(req, res){
+    if (req.session.username){
+        res.redirect('/register');
+    }
+    else{
     res.render('account/login');
+    }
 }); 
 
-accountRoutes.get('/register', function(req, res){
-    res.render('account/register', {errors: ""});
+accountRoutes.get('/logout', function(req, res){
+    req.session.destroy();
+    res.redirect('/login');
+})
+
+// accountRoutes.get('/register', function(req, res){
+//     res.render('account/register', {errors: ""});
+// });
+
+const client = kenx({
+    client: "pg",
+    connection: {
+    user: "vms",
+    password: "vms",
+    database: "vmsnode_development",
+    host: "localhost",
+    port:5432
+    }
 });
+
+//Query database and res.render data onto register.ejs
+accountRoutes.get('/register', function(req, res){
+    if (req.session.username){
+        client.select("*").from("users").then(data => {
+        res.render("account/register.ejs", {users: data});
+        }).catch(err => res.status(400).json(err));
+    }
+    else{
+        res.redirect('/login');
+    }
+})
+
+//Query database and DELETE data from database
+accountRoutes.delete("/user/delete/:id", (req, res) => {
+    client.select("*").from("users").where( { id: req.params.id }).del().then(function(){
+        res.redirect('/register');
+    });
+})
 
 accountRoutes.post('/register', function(req,res){
     var matched_users_promise = models.user.findAll({
@@ -44,8 +95,9 @@ accountRoutes.post('/register', function(req,res){
     })
 });
 
+
 accountRoutes.post('/login', function(req,res){
-    var matched_users_promise = models.user.findAll({
+    var matched_users_promise = models.management.findAll({
         where: Sequelize.and(
             {username: req.body.username},
         )
@@ -63,10 +115,15 @@ accountRoutes.post('/login', function(req,res){
             }
         }
         else{
+            console.log("Might be user not found");
             res.redirect('/login');
             console.log(error);
+            
         }
     });
 });
-
-module.exports = {"AccountRoutes" : accountRoutes};
+    
+module.exports = {
+    "AccountRoutes" : accountRoutes,
+    client
+};
