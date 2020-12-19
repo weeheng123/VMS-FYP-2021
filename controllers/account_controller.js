@@ -10,6 +10,7 @@ const bcrypt = require('bcrypt');
 const { Client } = require('pg');
 const user = require('../models/user');
 const methodOverride = require('method-override');
+const { Result } = require('express-validator');
 
 
 var accountRoutes = express();
@@ -112,6 +113,35 @@ accountRoutes.post('/login', function(req,res){
             }
             else{
                 res.redirect('/register');
+            }
+        }
+        else{
+            console.log("Might be user not found");
+            res.redirect('/login');
+            console.log(error);
+            
+        }
+    });
+});
+
+accountRoutes.post('/app/login', function(req,res){
+    var matched_users_promise = models.user.findAll({
+        where: Sequelize.and(
+            {username: req.body.username},
+        )
+    });
+    matched_users_promise.then(function(users){
+        if(users.length > 0){
+            let user = users[0];
+            let passwordHash = user.password;
+            if(bcrypt.compareSync(req.body.password, passwordHash)){
+                const objToSend={
+                    username: res.name
+                }
+                res.status(200).send(JSON.stringify(objToSend))
+            }
+            else{
+                res.status(404).send();
             }
         }
         else{
