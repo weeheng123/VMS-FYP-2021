@@ -13,17 +13,9 @@ const assert = require('assert');
 var AccountRoutes = require('./controllers/account_controller');
 var ancRoutes = require('./controllers/announcement_controller');
 const { MemoryStore } = require('express-session');
+pg.defaults.ssl = true;
 
 var port = process.env.PORT || 5000;
-
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  dialectOptions: {
-    ssl:true
-  }
-});
-
-client.connect();
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.json());
