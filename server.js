@@ -18,8 +18,8 @@ var port = process.env.PORT || 5000;
 
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
+  dialectOptions: {
+    ssl:true
   }
 });
 
