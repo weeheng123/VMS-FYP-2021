@@ -37,6 +37,6 @@ app.use(session({
 app.use('/', AccountRoutes.AccountRoutes);
 app.use('/',ancRoutes.ancRoutes);
 
-var listener = app.listen(5000, function(){
+var listener = app.listen(process.env.PORT | 5000, function(){
     console.log('Listening on port ' + listener.address().port); //Listening on port 5000
 });
