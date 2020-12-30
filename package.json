@@ -4,8 +4,8 @@
   "description": "Boilderplate for React and Express",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "server": "node server.js"
+    "start": "nodemon server.js",
+    "server": "nodemon server.js"
   },
   "author": "Goh Wee Heng",
   "license": "MIT",
