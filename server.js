@@ -13,7 +13,6 @@ const assert = require('assert');
 var AccountRoutes = require('./controllers/account_controller');
 var ancRoutes = require('./controllers/announcement_controller');
 const { MemoryStore } = require('express-session');
-pg.defaults.ssl = true;
 
 var port = process.env.PORT || 5000;
 
