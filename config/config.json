@@ -16,12 +16,6 @@
     "port" : 5432
   },
   "production": {
-    "username": "vms",
-    "password": "vms",
-    "database": "vmsnode_production",
-    "host": "127.0.0.1",
-    "dialect": "postgres",
-    "operatorsAliases": false,
-    "use_env_variable": "DATABASE_URL"
+    "connection": "postgres://bhfvlalgelzbcb:499ed18ada00da739909f8812591260b09a7cfe9a68d55ecaf2889dade3c8cfc@ec2-54-175-243-75.compute-1.amazonaws.com:5432/df1cjvemdqh3qn"
   }
 }
