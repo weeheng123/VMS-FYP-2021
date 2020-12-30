@@ -136,7 +136,8 @@ accountRoutes.post('/app/login', function(req,res){
             let passwordHash = user.password;
             if(bcrypt.compareSync(req.body.password, passwordHash)){
                 const objToSend={
-                    username: res.name
+                    username: res.name,
+                    role: res.role
                 }
                 res.status(200).send(JSON.stringify(objToSend))
             }
