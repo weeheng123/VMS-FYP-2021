@@ -40,14 +40,22 @@ accountRoutes.get('/logout', function(req, res){
 //     res.render('account/register', {errors: ""});
 // });
 
+// const client = kenx({
+//     client: "pg",
+//     connection: {
+//     user: "vms",
+//     password: "vms",
+//     database: "vmsnode_development",
+//     host: "localhost",
+//     port:5432
+//     }
+// });
+
 const client = kenx({
     client: "pg",
     connection: {
-    user: "vms",
-    password: "vms",
-    database: "vmsnode_development",
-    host: "localhost",
-    port:5432
+        use_env_variable: "DATABASE_URL",
+        dialectOptions: { "ssl": true }
     }
 });
 
