@@ -40,6 +40,7 @@ accountRoutes.get('/logout', function(req, res){
 //     res.render('account/register', {errors: ""});
 // });
 
+//when using local
 // const client = kenx({
 //     client: "pg",
 //     connection: {
@@ -51,10 +52,11 @@ accountRoutes.get('/logout', function(req, res){
 //     }
 // });
 
+//when using production
 const client = kenx({
     client: "pg",
     connection: {
-        use_env_variable: "DATABASE_URL",
+        use_env_variable: process.env.DATABASE_URL,
         dialectOptions: { "ssl": true }
     }
 });
