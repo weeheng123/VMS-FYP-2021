@@ -56,7 +56,7 @@ accountRoutes.get('/logout', function(req, res){
 const client = kenx({
     client: "pg",
     connection: {
-    connectString: process.env.DATABASE_URL,
+    connectionString: process.env.DATABASE_URL,
     ssl:false
     }
 });
