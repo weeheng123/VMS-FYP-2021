@@ -1,4 +1,6 @@
 // Update with your config settings.
+var pg = require('pg');
+pg.defaults.ssl = true;
 
 module.exports = {
 
@@ -34,7 +36,7 @@ module.exports = {
     },
     migrations: {
       directory: './migrations'
-    }
+    },
   }
 
 };
