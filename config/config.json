@@ -18,7 +18,13 @@
   "production": {
     "dialect": "postgres",
     "use_env_variable": "DATABASE_URL",
-    "dialectOptions": { "ssl": true },
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        // Ref.: https://github.com/brianc/node-postgres/issues/2009
+        "rejectUnauthorized": false
+      },
     "rejectUnauthorized": false
+    }
   }
 }

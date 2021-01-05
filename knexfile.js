@@ -30,7 +30,6 @@ module.exports = {
   production: {
     client: 'pg',
     connection: process.env.DATABASE_URL,
-    rejectUnauthorized: false,
     pool: {
       min: 2,
       max: 10
@@ -38,6 +37,13 @@ module.exports = {
     migrations: {
       directory: './migrations'
     },
+    dialectOptions: {
+      ssl: {
+        require: true,
+        // Ref.: https://github.com/brianc/node-postgres/issues/2009
+        rejectUnauthorized: false,
+      },
+    }
   }
 
 };
