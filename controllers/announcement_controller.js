@@ -20,6 +20,17 @@ var ancRoutes = express.Router();
 //     }
 // });
 
+const client = kenx({
+    client: "pg",
+    connection: {
+    user: "vms",
+    password: "vms",
+    database: "vmsnode_development",
+    host: "localhost",
+    port:5432
+    }
+});
+
 
 ancRoutes.get('/announcement', function(req, res){
     if (req.session.username){

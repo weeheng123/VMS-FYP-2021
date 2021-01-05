@@ -2,6 +2,7 @@ const express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var app = express();
+require('dotenv').config()
 
 //db dependencies
 //knex is SQL Query builder
