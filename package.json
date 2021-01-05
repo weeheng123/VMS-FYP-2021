@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server.js",
     "start-dev": "nodemon server.js",
-    "server": "node server.js"
+    "server": "node server.js",
+    "knex": "knex"
   },
   "author": "Goh Wee Heng",
   "license": "MIT",
