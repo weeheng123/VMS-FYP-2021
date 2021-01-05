@@ -23,12 +23,15 @@ var ancRoutes = express.Router();
 const client = kenx({
     client: "pg",
     connection: {
-    user: "vms",
-    password: "vms",
-    database: "vmsnode_development",
-    host: "localhost",
-    port:5432
-    }
+    connectionString: process.env.DATABASE_URL
+    },
+    dialectOptions: {
+        ssl: {
+          require: true,
+          // Ref.: https://github.com/brianc/node-postgres/issues/2009
+          rejectUnauthorized: false,
+        },
+      }
 });
 
 
