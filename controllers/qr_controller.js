@@ -13,7 +13,7 @@ const methodOverride = require('method-override');
 const { Result } = require('express-validator');
 
 
-var qrRoutes = express();
+var qrRoutes = express.Router();
 //Change from express.Router() to express();
 
 qrRoutes.use(bodyParser.json()) // for parsing application/json
@@ -46,7 +46,7 @@ qrRoutes.post('/app/qr', function(req,res){
         checkin: req.body.checkin,
         checkout: req.body.checkout
     }).then(function(){
-        res.status(200);
+        res.status(200).send();
     });
 });
 
