@@ -45,10 +45,10 @@ qrRoutes.post('/app/qr', function(req,res){
         qrimage: req.body.qrimage,
         checkin: req.body.checkin,
         checkout: req.body.checkout
-    }).then(function(){
-        res.status(200).send();
-    });
-});
+    })
+    res.status(200).send();
+    }
+    );
 
 
 module.exports = {"qrRoutes" : qrRoutes};
