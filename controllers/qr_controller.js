@@ -37,7 +37,7 @@ const client = kenx({
 qrRoutes.post('/app/qr', function(req,res){
     models.qrentries.create({
         name: req.body.name,
-        ic: req.body.oriic,
+        ic: req.body.ic,
         address: req.body.address,
         oriname: req.body.oriname,
         oriic: req.body.oriic,
