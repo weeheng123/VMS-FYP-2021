@@ -46,7 +46,7 @@ qrRoutes.post('/app/qr', function(req,res){
         checkin: req.body.checkin,
         checkout: req.body.checkout
     })
-    res.status(200).send();
+    res.status(200).send(null);
     }
     );
 
