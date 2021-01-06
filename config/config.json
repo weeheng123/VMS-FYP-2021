@@ -1,4 +1,5 @@
 {
+  
   "development": {
     "username": "vms",
     "password": "vms",
@@ -16,11 +17,13 @@
     "port" : 5432
   },
   "production": {
-    "username": "vms",
-    "password": "vms",
-    "database": "vmsnode_production",
-    "host": "127.0.0.1",
     "dialect": "postgres",
-    "port" : 5432
+    "use_env_variable": "DATABASE_URL",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
   }
 }

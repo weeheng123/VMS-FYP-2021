@@ -27,7 +27,7 @@ accountRoutes.get('/login', function(req, res){
         res.redirect('/register');
     }
     else{
-    res.render('account/login');
+    res.render('account/login', {loginErrors: 'Welcome to Cisco Security VMS'});
     }
 }); 
 
@@ -40,15 +40,31 @@ accountRoutes.get('/logout', function(req, res){
 //     res.render('account/register', {errors: ""});
 // });
 
+//when using local
+// const client = kenx({
+//     client: "pg",
+//     connection: {
+//     user: "vms",
+//     password: "vms",
+//     database: "vmsnode_development",
+//     host: "localhost",
+//     port:5432
+//     }
+// });
+
+//when using production
 const client = kenx({
     client: "pg",
     connection: {
-    user: "vms",
-    password: "vms",
-    database: "vmsnode_development",
-    host: "localhost",
-    port:5432
-    }
+    connectionString: process.env.DATABASE_URL
+    },
+    dialectOptions: {
+        ssl: {
+          require: true,
+          // Ref.: https://github.com/brianc/node-postgres/issues/2009
+          rejectUnauthorized: false,
+        },
+      }
 });
 
 //Query database and res.render data onto register.ejs
@@ -116,10 +132,8 @@ accountRoutes.post('/login', function(req,res){
             }
         }
         else{
-            console.log("Might be user not found");
-            res.redirect('/login');
-            console.log(error);
-            
+            res.render('account/login',{loginErrors: 'Error: Username or Password not found'});
+            // console.log(error);
         }
     });
 });

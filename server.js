@@ -2,6 +2,7 @@ const express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var app = express();
+require('dotenv').config()
 
 //db dependencies
 //knex is SQL Query builder
@@ -40,3 +41,4 @@ app.use('/',ancRoutes.ancRoutes);
 var listener = app.listen(port, function(){
     console.log('Listening on port ' + listener.address().port); //Listening on port 5000
 });
+
