@@ -167,22 +167,6 @@ accountRoutes.post('/app/login', function(req,res){
         }
     });
 });
-
-accountRoutes.post('/app/qr', function(req,res){
-    models.qrentries.create({
-        name: req.body.name,
-        ic: req.body.ic,
-        address: req.body.address,
-        oriname: req.body.oriname,
-        oriic: req.body.oriic,
-        oriaddress: req.body.oriaddress,
-        qrimage: req.body.qrimage,
-        checkin: req.body.checkin,
-        checkout: req.body.checkout
-    }).then(function(){
-        res.status(200).send();
-    });
-});
     
 module.exports = {
     "AccountRoutes" : accountRoutes,
