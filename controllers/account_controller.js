@@ -138,7 +138,7 @@ accountRoutes.post('/login', function(req,res){
     });
 });
 
-accountRoutes.post('/app/login', function(req,res){
+accountRoutes.post('/app/login', async function(req,res){
     var matched_users_promise = models.user.findAll({
         where: Sequelize.and(
             {username: req.body.username},
@@ -149,7 +149,7 @@ accountRoutes.post('/app/login', function(req,res){
             let user = users[0];
             let passwordHash = user.password;
             if(bcrypt.compareSync(req.body.password, passwordHash)){
-                let rolequery = client.select('role').from("users").where( { username: req.body.username }).then(data => console.log(data));
+                const rolequery = await client.select('role').from("users").where( { username: req.body.username });
                 const objToSend={
                     role: rolequery.role
                 }
