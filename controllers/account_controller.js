@@ -150,8 +150,8 @@ accountRoutes.post('/app/login', function(req,res){
             let passwordHash = user.password;
             if(bcrypt.compareSync(req.body.password, passwordHash)){
                 const objToSend={
-                    username: user.username,
-                    role: user.role
+                    username: res.name,
+                    role: res.role
                 }
                 res.status(200).send(JSON.stringify(objToSend))
             }
@@ -160,7 +160,8 @@ accountRoutes.post('/app/login', function(req,res){
             }
         }
         else{
-            res.status(404).send();
+           res.status(404).send();
+            
         }
     });
 });
