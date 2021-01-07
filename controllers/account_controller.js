@@ -148,16 +148,15 @@ accountRoutes.post('/app/login', function(req,res){
         if(users.length > 0){
             let user = users[0];
             let passwordHash = user.password;
+            const userArray = [];
             if(bcrypt.compareSync(req.body.password, passwordHash)){
                 let rolequery = client.select('role').from("users").where( { username: req.body.username }).then(function(data){
-                    console.log(data);
-                    res.send(JSON.stringify(data));
+                    userArray = data;
                 })
               
-                const objToSend={
-                    role: rolequery.role
-                }  
-                res.status(200).send(JSON.stringify(objToSend));
+                console.log(userArray);
+            
+                res.status(200).send(JSON.stringify(userArray));
                 // console.log(rolequery.role);
                 // res.status(200).send(JSON.stringify(objToSend))
             }
