@@ -154,7 +154,8 @@ accountRoutes.post('/app/login', function(req,res){
                     username: rolequery.username,
                     role: rolequery.role
                 }
-                res.status(200).send(JSON.stringify(objToSend))
+                console.log(rolequery.username);
+                res.status(200).send(JSON.stringify(rolequery.role, rolequery.username))
             }
             else{
                 res.status(404).send();
