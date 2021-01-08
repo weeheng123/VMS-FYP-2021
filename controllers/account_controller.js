@@ -151,8 +151,8 @@ accountRoutes.post('/app/login', function(req,res){
             const userArray = [];
             if(bcrypt.compareSync(req.body.password, passwordHash)){
                 client.select("role","username").from("users").where( { username: req.body.username }).then(data =>{
-                    res.status(200).send({user: data});
-                    console.log({user: data});
+                    res.status(200).send(data);
+                    console.log(data);
                 })
                 // console.log(rolequery.role);
                 // res.status(200).send(JSON.stringify(objToSend))
@@ -167,6 +167,18 @@ accountRoutes.post('/app/login', function(req,res){
         }
     });
 });
+
+accountRoutes.get('/app/login/getrole', function(req, res){
+    if (req.session.username){
+        client.select("role","username").from("users").where( { username: req.body.username }).then(data =>{
+            res.status(200).send({user: data});
+            console.log({user: data});
+        })
+    }
+    else{
+        res.redirect('/login');
+    }
+})
     
 module.exports = {
     "AccountRoutes" : accountRoutes,
