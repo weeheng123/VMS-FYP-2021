@@ -48,13 +48,9 @@ ancRoutes.get('/announcement', function(req, res){
 })
 
 ancRoutes.get('/app/announcement', function(req, res){
-    if (req.session.username){
         client.select("title, description").from("announcements").then(data => {
         res.status(200).send(JSON.stringify({announcement:data}));
         }).catch(err => res.status(400).json(err));
-    }
-    else{
-    }
 })
 
 
