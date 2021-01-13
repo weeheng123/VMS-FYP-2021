@@ -53,5 +53,16 @@ qrRoutes.post('/app/qr', function(req,res){
     }
     );
 
+qrRoutes.post('/app/qrstatus', function(req,res){
+    if(req.body.ic){
+    client.select("checkin").from("qrentries").where({ic: req.body.ic}).then(data =>{
+        res.status(200).send(JSON.stringify({qrstatus:data}));
+        console.log(data)
+    })}
+    else{
+        res.status(404).send();
+    }
+})
+
 
 module.exports = {"qrRoutes" : qrRoutes};
