@@ -35,26 +35,51 @@ const client = kenx({
 });
 
 qrRoutes.post('/app/qr', function(req,res){
-    if(client.from("qrentries").where({ic: req.body.ic}).whereNotNull("checkin","checkout")){
-    models.qrentry.create({
-        name: req.body.name,
-        ic: req.body.ic,
-        address: req.body.address,
-        oriname: req.body.oriname,
-        oriic: req.body.oriic,
-        oriaddress: req.body.oriaddress,
-        qrimage: req.body.qrimage,
-        checkin: req.body.checkin,
-        checkout: req.body.checkout
+    client.select("checkout").from("qrentries").where({ic: req.body.ic}).whereNull("checkout").then(data=>{
+        if(data > 0){
+            res.status(400).send();
+        }
+        else{
+            if(checkout != "null")
+                models.qrentry.create({
+                    name: req.body.name,
+                    ic: req.body.ic,
+                    address: req.body.address,
+                    oriname: req.body.oriname,
+                    oriic: req.body.oriic,
+                    oriaddress: req.body.oriaddress,
+                    qrimage: req.body.qrimage,
+                    checkin: req.body.checkin,
+                    checkout: req.body.checkout
+         })
+            const response={
+                name: req.body.name
+         }  
+            res.status(200).send(JSON.stringify(response))
+        }
     })
-    const response={
-        name: req.body.name
-    }
-    res.status(200).send(JSON.stringify(response))
-    }
-    else{
-        res.status(400).send();
-    }
+    // var matched_qr_promise = models.qrentry.findAll({
+    //     where: Sequelize.or(
+    //         {ic: req.body.ic},
+    //     )
+    // });
+    // matched_qr_promise.then(function(checkout){ 
+    //     if(checkout != "null")
+    //     models.qrentry.create({
+    //     name: req.body.name,
+    //     ic: req.body.ic,
+    //     address: req.body.address,
+    //     oriname: req.body.oriname,
+    //     oriic: req.body.oriic,
+    //     oriaddress: req.body.oriaddress,
+    //     qrimage: req.body.qrimage,
+    //     checkin: req.body.checkin,
+    //     checkout: req.body.checkout
+    // })
+    // const response={
+    //     name: req.body.name
+    // }
+    // res.status(200).send(JSON.stringify(response))
     }
     );
 
