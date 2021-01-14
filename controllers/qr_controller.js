@@ -35,7 +35,7 @@ const client = kenx({
 });
 
 qrRoutes.post('/app/qr', function(req,res){
-    if(client.from("qrentries").where(req.body.ic).whereNotNull("checkin","checkout")){
+    if(client.from("qrentries").where({ic: req.body.ic}).whereNotNull("checkin","checkout")){
     models.qrentry.create({
         name: req.body.name,
         ic: req.body.ic,
