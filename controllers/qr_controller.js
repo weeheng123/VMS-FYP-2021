@@ -83,7 +83,7 @@ qrRoutes.post('/app/qr', function(req,res){
     );
 
 qrRoutes.post('/app/qrstatus', function(req,res){
-    client.select("id, checkin").from("qrentries").where({ic: req.body.ic}).then(data =>{
+    client.select("id", "checkin").from("qrentries").where({ic: req.body.ic}).then(data =>{
         if(data.length>0){
             res.status(200).send(JSON.stringify({qrstatus:data}));
             console.log(data)
