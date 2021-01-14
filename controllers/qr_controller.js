@@ -37,6 +37,7 @@ const client = kenx({
 qrRoutes.post('/app/qr', function(req,res){
     client.select("ic").from("qrentries").where({ic: req.body.ic}).whereNull("checkout").then(data=>{
         if(data.length > 0){
+            res.send({data});
             res.status(400).send();
         }
         else{
