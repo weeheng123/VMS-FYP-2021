@@ -40,7 +40,6 @@ qrRoutes.post('/app/qr', function(req,res){
             res.status(400).send();
         }
         else{
-            if(checkout != "null")
                 models.qrentry.create({
                     name: req.body.name,
                     ic: req.body.ic,
