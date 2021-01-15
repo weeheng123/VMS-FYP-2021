@@ -95,8 +95,8 @@ qrRoutes.post('/app/qrstatus', function(req,res){
 })
 
 qrRoutes.put('/app/checkin_out', function(req,res){
-    var icString = parseInt(req.body.id);
-    client('qrentries').where({id: icString}).update(req.body).then(data =>{
+    var idString = parseInt(req.body.id);
+    client('qrentries').where({id: idString}).update(req.body).then(data =>{
         res.status(200).send(data);
     })
 })
