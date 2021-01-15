@@ -94,5 +94,10 @@ qrRoutes.post('/app/qrstatus', function(req,res){
     })
 })
 
+qrRoutes.put('/app/checkin', function(req,res){
+    client('qrentries').where({id: req.body.ic}).update({checkin: req.body.checkin}).returning('*').then(data =>{
+        res.status(200).send(data);
+    })
+})
 
 module.exports = {"qrRoutes" : qrRoutes};
