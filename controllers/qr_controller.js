@@ -94,11 +94,17 @@ qrRoutes.post('/app/qrstatus', function(req,res){
     })
 })
 
-qrRoutes.put('/app/checkin_out', function(req,res){
-    client('qrentries').where({id: req.body.id}).update(req.body).returning('id').then(data =>{
-        res.status(200).send(JSON.stringify({qrcheckin_out:data}));
-    
-    })
+qrRoutes.put('/app/checkin_out',function(req,res){
+    client.select("id", "checkout").from("qrentries").where({id: req.body.id}).whereNull("checkout").then(data =>{
+        if(data.length>0){
+            client('qrentries').where({id: req.body.id}).update(req.body).returning('id').then(data =>{
+            res.status(200).send(JSON.stringify({qrcheckin_out:data}));
+            })
+        }
+        else{
+            res.status(400).send();
+        }
+})
 })
 
 module.exports = {"qrRoutes" : qrRoutes};
