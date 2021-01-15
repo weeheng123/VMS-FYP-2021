@@ -96,7 +96,7 @@ qrRoutes.post('/app/qrstatus', function(req,res){
 
 qrRoutes.put('/app/checkin_out', function(req,res){
     client.select("id", "checkout").from("qrentries").where({id: req.body.id}).then(data =>{
-    if(data.length>0){
+        if(data.length>0){
             res.status(400).send();
     }
     else{
@@ -105,6 +105,7 @@ qrRoutes.put('/app/checkin_out', function(req,res){
             console.log(data);
         })
     }
+    })
 })
 
 module.exports = {"qrRoutes" : qrRoutes};
