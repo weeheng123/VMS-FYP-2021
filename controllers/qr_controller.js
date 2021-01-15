@@ -95,17 +95,21 @@ qrRoutes.post('/app/qrstatus', function(req,res){
 })
 
 qrRoutes.put('/app/checkin_out', function(req,res){
-    client.select("id", "checkout").from("qrentries").where({id: req.body.id}).whereNull("checkout").then(data =>{
-        if(data.length>0){
-            res.status(400).send();
-    }
-    else{
-            client('qrentries').where({id: req.body.id}).update(req.body).returning('id').then(data =>{
-            res.status(200).send(JSON.stringify({qrcheckin_out: data}));
-            console.log(data);
-        })
-    }
-    })
-})
+    client('qrentries').where({id: req.body.id}).update(req.body).returning('id').then(data =>{
+    res.status(200).send(JSON.stringify({qrcheckin_out: data}));
+    console.log(data);
+    // client.select("id", "checkout").from("qrentries").where({id: req.body.id}).then(data =>{
+    //     if(data.length>0){
+    //         res.status(400).send();
+    // }
+    // else{
+    //         client('qrentries').where({id: req.body.id}).update(req.body).returning('id').then(data =>{
+    //         res.status(200).send(JSON.stringify({qrcheckin_out: data}));
+    //         console.log(data);
+    //     })
+    // }
+    // })
+    
+}
 
 module.exports = {"qrRoutes" : qrRoutes};
