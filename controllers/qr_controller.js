@@ -86,7 +86,7 @@ qrRoutes.post('/app/qrstatus', function(req,res){
     client.select("id", "checkin").from("qrentries").where({ic: req.body.ic}).then(data =>{
         if(data.length>0){
             res.status(200).send(JSON.stringify({qrstatus:data}));
-            console.log(data)
+            console.log(data);
         }
         else{
             res.status(400).send();
@@ -95,7 +95,8 @@ qrRoutes.post('/app/qrstatus', function(req,res){
 })
 
 qrRoutes.put('/app/checkin_out', function(req,res){
-    client('qrentries').where({id: req.body.id}).update(req.body).returning('*').then(data =>{
+    var icString = parseInt(req.body.id);
+    client('qrentries').where({id: icString}).update(req.body).then(data =>{
         res.status(200).send(data);
     })
 })
