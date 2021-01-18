@@ -44,7 +44,7 @@ inRoutes.post('/app/incident', function(req,res){
         unit: req.body.unit
     })
     const response={
-        name: req.body.title
+        title: req.body.title
     }  
     res.status(200).send(JSON.stringify(response))
 })
