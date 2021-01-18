@@ -148,25 +148,37 @@ accountRoutes.post('/app/login', function(req,res){
         if(users.length > 0){
             let user = users[0];
             let passwordHash = user.password;
+            const userArray = [];
             if(bcrypt.compareSync(req.body.password, passwordHash)){
-                const objToSend={
-                    username: res.name,
-                    role: res.role
-                }
-                res.status(200).send(JSON.stringify(objToSend))
+                client.select("role","username","unit","ic").from("users").where( { username: req.body.username }).then(data =>{
+                    res.status(200).send(JSON.stringify({user:data}));
+                    console.log(data);
+                })
+                // console.log(rolequery.role);
+                // res.status(200).send(JSON.stringify(objToSend))
             }
             else{
                 res.status(404).send();
             }
         }
         else{
-            console.log("Might be user not found");
-            res.redirect('/login');
-            console.log(error);
+           res.status(404).send();
             
         }
     });
 });
+
+accountRoutes.get('/app/login/getrole', function(req, res){
+    if (req.session.username){
+        client.select("role","username").from("users").where( { username: req.body.username }).then(data =>{
+            res.status(200).send({user: data});
+            console.log({user: data});
+        })
+    }
+    else{
+        res.redirect('/login');
+    }
+})
     
 module.exports = {
     "AccountRoutes" : accountRoutes,
