@@ -34,7 +34,7 @@ const client = kenx({
       }
 });
 
-qrRoutes.post('/app/incident', function(req,res){
+inRoutes.post('/app/incident', function(req,res){
     models.qrentry.create({
         title: req.body.title,
         description: req.body.description,
