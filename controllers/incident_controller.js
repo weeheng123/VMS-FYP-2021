@@ -42,12 +42,12 @@ const client = kenx({
 
 inRoutes.post('/app/incident', upload.single(req.files.picture), async(req,res) => {
     models.qrentry.create({
-        title: req.body.title,
-        description: req.body.description,
-        status: req.body.status,
+        title: req.title,
+        description: req.description,
+        status: req.status,
         picture: req.files.picture,
-        name: req.body.name,
-        unit: req.body.unit
+        name: req.name,
+        unit: req.unit
     })
     // const {data} = req.files.picture; 
     // await kenx.insert({
