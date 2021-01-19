@@ -40,24 +40,14 @@ const client = kenx({
       }
 });
 
-inRoutes.post('/app/incident', upload.single("files"), async(req,res) => {
+inRoutes.post('/app/incident', function(req,res) {
     models.qrentry.create({
-        title: req.title,
-        description: req.description,
-        status: req.status,
-        picture: req.files.picture,
-        name: req.name,
-        unit: req.unit
+        title: req.body.title,
+        description: req.body.description,
+        status: "Pending",
+        name: req.body.name,
+        unit: req.body.unit
     })
-    // const {data} = req.files.picture; 
-    // await kenx.insert({
-    //     title: req.body.title, 
-    //     description: req.body.description, 
-    //     name: req.body.name,
-    //     unit: req.body.unit,
-    //     status: "Pending",
-    //     picture:data, 
-    // }).into("incident")
     const response={
         title: req.body.title
     }  
