@@ -11,10 +11,12 @@ const { Client } = require('pg');
 const user = require('../models/user');
 const methodOverride = require('method-override');
 const { Result } = require('express-validator');
+const multer = require('multer');
 
 
 var inRoutes = express.Router();
 //Change from express.Router() to express();
+const upload = multer()
 
 inRoutes.use(bodyParser.json()) // for parsing application/json
 inRoutes.use(bodyParser.urlencoded({ extended: true }))
@@ -34,7 +36,7 @@ const client = kenx({
       }
 });
 
-inRoutes.post('/app/incident', function(req,res){
+inRoutes.post('/app/incident', upload.single(),function(req,res){
     models.qrentry.create({
         title: req.body.title,
         description: req.body.description,
