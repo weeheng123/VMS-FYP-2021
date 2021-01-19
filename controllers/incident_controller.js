@@ -49,9 +49,17 @@ inRoutes.post('/app/incident', function(req,res) {
         unit: req.body.unit
     })
     const response={
-        title: req.body.title
+        title: req.body.title,
+        id: req.body.id,
+        name: req.body.name
     }  
     res.status(200).send(JSON.stringify(response))
+})
+
+inRoutes.get('/app/incident/reported', function(req, res){
+    client.select("*").from("incidents").then(data => {
+    res.status(200).send(JSON.stringify({incident:data}));
+    }).catch(err => res.status(400).json(err));
 })
 
 module.exports = {"inRoutes" : inRoutes};
