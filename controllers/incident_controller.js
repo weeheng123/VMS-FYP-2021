@@ -41,7 +41,7 @@ const client = kenx({
 });
 
 inRoutes.post('/app/incident', function(req,res) {
-    models.qrentry.create({
+    models.incident.create({
         title: req.body.title,
         description: req.body.description,
         status: "Pending",
