@@ -41,23 +41,23 @@ const client = kenx({
 });
 
 inRoutes.post('/app/incident', async(req,res) => {
-    // models.qrentry.create({
-    //     title: req.body.title,
-    //     description: req.body.description,
-    //     status: req.body.status,
-    //     picture: req.body.picture,
-    //     name: req.body.name,
-    //     unit: req.body.unit
-    // })
-    const {data} = req.files.picture; 
-    await kenx.insert({
-        title: req.body.title, 
-        description: req.body.description, 
+    models.qrentry.create({
+        title: req.body.title,
+        description: req.body.description,
+        status: req.body.status,
+        picture: req.files.picture,
         name: req.body.name,
-        unit: req.body.unit,
-        status: "Pending",
-        picture:data, 
-    }).into("incident")
+        unit: req.body.unit
+    })
+    // const {data} = req.files.picture; 
+    // await kenx.insert({
+    //     title: req.body.title, 
+    //     description: req.body.description, 
+    //     name: req.body.name,
+    //     unit: req.body.unit,
+    //     status: "Pending",
+    //     picture:data, 
+    // }).into("incident")
     const response={
         title: req.body.title
     }  
