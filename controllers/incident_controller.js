@@ -12,11 +12,15 @@ const user = require('../models/user');
 const methodOverride = require('method-override');
 const { Result } = require('express-validator');
 const multer = require('multer');
+const fileUpload = require('express-fileupload');
+const Knex = require('knex');
 
 
 var inRoutes = express.Router();
 //Change from express.Router() to express();
 const upload = multer()
+
+inRoutes.use(fileUpload());
 
 inRoutes.use(bodyParser.json()) // for parsing application/json
 inRoutes.use(bodyParser.urlencoded({ extended: true }))
@@ -36,15 +40,24 @@ const client = kenx({
       }
 });
 
-inRoutes.post('/app/incident', upload.single(),function(req,res){
-    models.qrentry.create({
-        title: req.body.title,
-        description: req.body.description,
-        status: req.body.status,
-        picture: req.body.picture,
+inRoutes.post('/app/incident', async(req,res) => {
+    // models.qrentry.create({
+    //     title: req.body.title,
+    //     description: req.body.description,
+    //     status: req.body.status,
+    //     picture: req.body.picture,
+    //     name: req.body.name,
+    //     unit: req.body.unit
+    // })
+    const {data} = req.files.picture; 
+    await kenx.insert({
+        title: req.body.title, 
+        description: req.body.description, 
         name: req.body.name,
-        unit: req.body.unit
-    })
+        unit: req.body.unit,
+        status: "Pending",
+        picture:data, 
+    }).into("incident")
     const response={
         title: req.body.title
     }  
