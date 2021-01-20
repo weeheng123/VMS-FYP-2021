@@ -62,4 +62,11 @@ inRoutes.get('/app/incident/reported', function(req, res){
     }).catch(err => res.status(400).json(err));
 })
 
+inRoutes.put('/app/incident/status', function(req,res){
+    client('incidents').where({id: req.body.id}).update(req.body).returning('status').then(data =>{
+        res.status(200).send(JSON.stringify({incident:data}));
+        console.log({incident:data})
+    })
+})
+
 module.exports = {"inRoutes" : inRoutes};
