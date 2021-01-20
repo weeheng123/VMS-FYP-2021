@@ -69,7 +69,7 @@ inRoutes.put('/app/incident/status', function(req,res){
     })
 })
 
-inRoutes.post('/app/incident/get', function(req,res){
+inRoutes.get('/app/incident/get', function(req,res){
     client.select("*").where({name: req.body.name}).from("incidents").then(data =>{
         res.status(200).send(JSON.stringify({incident:data}));
         console.log({incident:data})
