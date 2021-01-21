@@ -64,7 +64,7 @@ inRoutes.get('/app/incident/reported', function(req, res){
 
 inRoutes.put('/app/incident/status', function(req,res){
     client('incidents').where({id: req.body.id}).update(req.body).returning('status').then(data =>{
-        res.status(200).send({incident:data});
+        res.status(200).send();
         console.log({incident:data})
     })
 })
