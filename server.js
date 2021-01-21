@@ -14,6 +14,7 @@ const assert = require('assert');
 var AccountRoutes = require('./controllers/account_controller');
 var ancRoutes = require('./controllers/announcement_controller');
 var qrRoutes = require('./controllers/qr_controller');
+var inRoutes = require('./controllers/incident_controller');
 const { MemoryStore } = require('express-session');
 
 var port = process.env.PORT || 5000;
@@ -39,6 +40,7 @@ app.use(session({
 app.use('/', AccountRoutes.AccountRoutes);
 app.use('/',ancRoutes.ancRoutes);
 app.use('/',qrRoutes.qrRoutes);
+app.use('/',inRoutes.inRoutes);
 
 var listener = app.listen(port, function(){
     console.log('Listening on port ' + listener.address().port); //Listening on port 5000
