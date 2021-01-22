@@ -72,9 +72,7 @@
         </span>
       </div>
       <div class="col-3 my-auto text-center">
-        <span id="addressId">
-        NO 4\nLINTANG MAS\n11600 GEORGETOWN\nPULAU PINANG
-        </span>
+        <text id="addressId">NO 4\nLINTANG MAS\n11600 GEORGETOWN\nPULAU PINANG</text>
       </div>
       <div class="col-2 my-auto text-center">
         <span>
@@ -114,7 +112,7 @@
 <script>
     $(document).ready(function(){
         var StringToReplace = $("#addressId").text();
-        var reString = StringToReplace.replace(/\n/g, '<br></br>')
+        var reString = StringToReplace.replace('\n', '<br/>')
         $("#addressId").text(reString);
 
     });
