@@ -76,7 +76,7 @@ inRoutes.post('/app/incident/get', function(req,res){
     })
 })
 
-inRoutes.get('/incident/get', function(req,res){
+inRoutes.get('/incident', function(req,res){
     if (req.session.username){
     client.select("*").from("incidents").then(data =>{
         res.status(200).send({incident: data});
