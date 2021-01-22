@@ -80,7 +80,7 @@ inRoutes.get('/incident', function(req,res){
     // res.render("incident/incident.ejs");
     if (req.session.username){
     client.select("*").from("incidents").then(data =>{
-        res.render("incident/incident.ejs", {incident: data});
+        res.render("incident/incident.ejs", {incidents: data});
         console.log({incident:data})
     })
     }
