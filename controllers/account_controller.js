@@ -27,7 +27,7 @@ accountRoutes.get('/login', function(req, res){
         res.redirect('/register');
     }
     else{
-    res.render('account/login', {loginErrors: ''});
+    res.render('account/login', {loginErrors: ' '});
     }
 }); 
 
@@ -132,7 +132,7 @@ accountRoutes.post('/login', function(req,res){
             }
         }
         else{
-            res.render('account/login',{loginErrors: 'Error: Username or Password not found'});
+            res.render('account/login',{loginErrors: 'Username or Password not found'});
             // console.log(error);
         }
     });
