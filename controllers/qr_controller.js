@@ -102,15 +102,16 @@ qrRoutes.put('/app/checkin_out', function(req,res){
 })
 
 qrRoutes.get('/qr', function(req,res){
-    if (req.session.username){
-    client.select("*").from("qrentries").then(data =>{
-        res.status(200).send({qrentry: data});
-        console.log({qrentry:data})
-    })
-    }
-    else{
-        res.redirect('/login');
-    }
+    res.render("visitor/visitor.ejs");
+    // if (req.session.username){
+    // client.select("*").from("qrentries").then(data =>{
+    //     res.status(200).send({qrentry: data});
+    //     console.log({qrentry:data})
+    // })
+    // }
+    // else{
+    //     res.redirect('/login');
+    // }
 })
 
 module.exports = {"qrRoutes" : qrRoutes};
