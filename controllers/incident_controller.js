@@ -77,15 +77,16 @@ inRoutes.post('/app/incident/get', function(req,res){
 })
 
 inRoutes.get('/incident', function(req,res){
-    if (req.session.username){
-    client.select("*").from("incidents").then(data =>{
-        res.render("incident/incident.ejs", {incident: data});
-        console.log({incident:data})
-    })
-    }
-    else{
-        res.redirect('/login');
-    }
+    res.render("incident/incident.ejs");
+    // if (req.session.username){
+    // client.select("*").from("incidents").then(data =>{
+    //     res.render("incident/incident.ejs", {incident: data});
+    //     console.log({incident:data})
+    // })
+    // }
+    // else{
+    //     res.redirect('/login');
+    // }
 })
 
 module.exports = {"inRoutes" : inRoutes};
