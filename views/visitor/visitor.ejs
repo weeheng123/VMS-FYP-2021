@@ -60,36 +60,49 @@
       </div>
     </div>
 
+    <% var count = 1 %> 
+    <% qrentries.forEach(function(visitor){%>
     <div class="row border-bottom py-3">
       <div class="col-1 my-auto text-center">
         <span>
-          1
+          <%= count %> 
         </span>
       </div>
       <div class="col-2 my-auto text-center">
         <span>
-          Goh Wee Heng
+          <%= visitor.name %>
         </span>
       </div>
       <div class="col-3 my-auto text-center">
-        <span id="addressId">NO 4\nLINTANG MAS\n11600 GEORGETOWN\nPULAU PINANG</span>
+        <span id="addressId"><%= visitor.address %></span>
       </div>
+      <script>
+        $(document).ready(function(){
+            var StringToReplace = $("#addressId").text();
+            var reString = StringToReplace.replace(/\\n/g, '<br/>');
+            $("#addressId").html(reString);
+    
+        });
+    
+    </script>
       <div class="col-2 my-auto text-center">
         <span>
-          991102-07-6374
+          <%= visitor.ic %>
         </span>
       </div>
       <div class="col-2 my-auto text-center">
         <span>
-          Null
+          <%= visitor.checkin %>
         </span>
       </div>
       <div class="col-2 my-auto text-center">
         <span>
-          Null
+          <%= visitor.checkout %>
         </span>
       </div>
     </div>
+    <% count++; %> 
+    <% }); %>
 
   </div>
 
@@ -109,14 +122,6 @@
   }
   </style>
 
-<script>
-    $(document).ready(function(){
-        var StringToReplace = $("#addressId").text();
-        var reString = StringToReplace.replace(/\\n/g, '<br/>');
-        $("#addressId").html(reString);
 
-    });
-
-</script>
 </body>
 </html>
