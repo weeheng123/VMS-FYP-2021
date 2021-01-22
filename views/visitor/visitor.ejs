@@ -114,8 +114,8 @@
 <script>
     $(document).ready(function(){
         var StringToReplace = $("#addressId").text();
-        var reString = StringToReplace.replace(/\n/, '\n')
-        $("#addressId").html(reString);
+        var reString = StringToReplace.replace(/\n/g, '\n')
+        $("#addressId").text(reString);
 
     });
 
