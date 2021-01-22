@@ -79,10 +79,10 @@ inRoutes.post('/app/incident/get', function(req,res){
 inRoutes.get('/incident', function(req,res){
     if (req.session.username){
     client.select("*").from("incidents").then(data =>{
-        res.status(200).send({incident: data});
+        // res.status(200).send({incident: data});
         res.render("incident/incident.ejs", {incident  : data});
-        console.log({incident:data})
-    })
+        console.log("Success")
+    }).catch(err => res.status(400).json(err));
     }
     else{
         res.redirect('/login');
