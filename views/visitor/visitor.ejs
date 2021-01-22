@@ -113,7 +113,7 @@
 
 <script>
     $(document).ready(function(){
-        var StringToReplace = $("#addressId").html;
+        var StringToReplace = $("#addressId").text();
         var reString = StringToReplace.replace(/\n/, '\n')
         $("#addressId").html(reString);
 
