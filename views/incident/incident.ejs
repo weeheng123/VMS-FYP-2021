@@ -18,54 +18,32 @@
 
 <body>
   <%- include('../includes/navbar.ejs'); -%>
-  <div class="container mb-5">
-
-    
-      <form class="announcement-form" method="POST" action="/announcement" >  
-        <h2 class="form-heading my-4">Announcement</h2>
-          <div class="row mb-3"> 
-            <span class="col-2 my-auto">Title:</span> 
-            <input name="title" type="text" class="form-control col-10 m-0" placeholder="Enter a title for the announcement"/>
-          </div> 
-          
-          <div class="row mb-4">
-            <span class="col-2">Description:</span>
-            <textarea name="description" class="form-control col-10 pt-1" style="height: 120px;" placeholder="Enter a description for the announcement"></textarea>
-          </div>
-
-          <div class="row justify-content-end">
-            <div class="col-4 pr-0">
-              <button class="btn btn-lg btn-primary btn-block" type="submit">Post</button>
-            </div>
-          </div>
-      </form>
-  </div>
 
   <div class="container mt-5">
     <div class="row mb-3">
       <div class="col">
-        <h2 class="form-heading mt-4">Announcement List</h2>
+        <h2 class="form-heading mt-4">Incident Report List</h2>
       </div>
     </div>
 
 
-    <% announcements.forEach(function(announcement){%>
+    <% incidents.forEach(function(incident){%>
     <div class="row mb-3 border">
       <div class="col-12 bg-light py-2"> 
         <div class="row">
-          <h5 class="col-6 my-auto"><%= announcement.title %> </h5>
-          <h5 class="col-6 text-right my-auto"><%= announcement.createdAt %></h5>
+          <h5 class="col-6 my-auto"><%= incident.title %> </h5>
+          <h5 class="col-6 text-right my-auto"><%= incident.createdAt %></h5>
         </div>
       </div>
 
       <div class="col-12 py-2">
-        <span><%= announcement.description %></span>
+        <span><%= incident.description %></span>
       </div>
 
       <div class="col-12">
         <div class="row pb-3 justify-content-end">
           <div class="col-2 pointer-hand text-right">
-            <form action="/anc/delete/<%= announcement.id %>?_method=DELETE" method="POST">
+            <form action="/anc/delete/<%= incident.id %>?_method=DELETE" method="POST">
               <input type="hidden" name="_method" value="delete">
               <button type="submit" class="btn btn-danger">
                 <a>
