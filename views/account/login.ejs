@@ -19,11 +19,11 @@
 
 <div class="container mt-5">
     <form method="POST" action="/login" class="bg-light col-8 mx-auto rounded py-4">
-        <h6 class="mt-4"><%= loginErrors %></h6>
         <h2 class="my-4">Log In</h2>
         <input name="username" type="text" class="form-control col-10 mx-auto" placeholder="Username"/>
         <input name="password" type="password" class="form-control col-10 mx-auto" placeholder="Password"/>
         <button class="btn btn-lg btn-primary btn-block col-4 mx-auto mb-4" type="submit">Log In</button>
+        <h6 class="mt-4 text-center"><%= loginErrors %></h6>
     </form>
 </div>
 </body>

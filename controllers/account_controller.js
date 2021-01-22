@@ -27,7 +27,7 @@ accountRoutes.get('/login', function(req, res){
         res.redirect('/register');
     }
     else{
-    res.render('account/login', {loginErrors: 'Welcome to Cisco Security VMS'});
+    res.render('account/login', {loginErrors: ''});
     }
 }); 
 
