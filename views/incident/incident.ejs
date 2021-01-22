@@ -27,23 +27,22 @@
     </div>
 
 
-    <% incidents.forEach(function(incident){%>
     <div class="row mb-3 border">
       <div class="col-12 bg-light py-2"> 
         <div class="row">
-          <h5 class="col-6 my-auto"><%= incident.title %> </h5>
-          <h5 class="col-6 text-right my-auto"><%= incident.createdAt %></h5>
+          <h5 class="col-6 my-auto">Title</h5>
+          <h5 class="col-6 text-right my-auto">Date</h5>
         </div>
       </div>
 
       <div class="col-12 py-2">
-        <span><%= incident.description %></span>
+        <span>Description</span>
       </div>
 
       <div class="col-12">
         <div class="row pb-3 justify-content-end">
           <div class="col-2 pointer-hand text-right">
-            <form action="/anc/delete/<%= incident.id %>?_method=DELETE" method="POST">
+            <form action="" method="POST">
               <input type="hidden" name="_method" value="delete">
               <button type="submit" class="btn btn-danger">
                 <a>
@@ -55,7 +54,6 @@
         </div>
       </div>
     </div>
-    <% }); %>
 
   
     
