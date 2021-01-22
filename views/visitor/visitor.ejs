@@ -112,7 +112,7 @@
 <script>
     $(document).ready(function(){
         var StringToReplace = $("#addressId").text();
-        var reString = StringToReplace.replace('N', '<br/>');
+        var reString = StringToReplace.replace(/N/g, '<br/>');
         $("#addressId").text(reString);
 
     });
