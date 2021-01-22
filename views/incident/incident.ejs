@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="description" content="BasicAuth">
+    <meta name="author" content="siddub">
+
+    <title>VMS Registration</title>
+  <title>Create a Jangle account</title>  <!-- Latest compiled and minified CSS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/915858e516.js" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+  <%- include('../includes/navbar.ejs'); -%>
+
+  <div class="container">
+    <div class="row mb-3">
+      <div class="col">
+        <h2 class="form-heading mt-4">Incident Report List</h2>
+      </div>
+    </div>
+
+
+    <% incidents.forEach(function(incident){%>
+    <div class="row mb-3 border">
+      <div class="col-12 bg-light py-2"> 
+        <div class="row">
+          <h5 class="col-6 my-auto"><%= incident.title %></h5>
+          <h5 class="col-6 text-right my-auto"><%= incident.createdAt %></h5>
+        </div>
+      </div>
+
+      <div class="col-12 py-2">
+        <span><%= incident.description %></span>
+      </div>
+
+      <div class="col-12">
+        <div class="row pb-3 justify-content-between">
+            <div class="my-auto">
+                <span class="col pr-0">Status: </span><span class="col pl-0"><%= incident.status %></span>
+            </div>
+            <div class="col-2 pointer-hand text-right">
+              <form action="/in/delete/<%= incident.id %>?_method=DELETE" method="POST">
+                <input type="hidden" name="_method" value="delete">
+                <button type="submit" class="btn btn-danger">
+                    <a>
+                    <i class="far fa-trash-alt"></i>
+                    </a>
+                </button>
+                </form>
+            </div>
+        </div>
+      </div>
+    </div>
+    <% }); %>
+  
+    
+
+  </div>
+
+  <!-- /container -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+
+  <style>
+  input{
+    margin-bottom: 15px
+  }
+  h2{
+    text-align: center
+  }
+  .container{
+    width:50%
+  }
+  </style>
+
+</body>
+</html>

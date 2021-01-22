@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="description" content="BasicAuth">
+    <meta name="author" content="siddub">
+
+    <title>VMS Registration</title>
+  <title>Create a Jangle account</title>  
+
+  <!-- Latest compiled and minified CSS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/915858e516.js" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+  <%- include('../includes/navbar.ejs'); -%>
+  <div class="container my-4">
+    <div class="row mb-3">
+      <div class="col">
+        <h2 class="form-heading">Visitors</h2>
+      </div>
+    </div>
+
+    <div class="row border bg-light py-3">
+      <div class="col-1 text-center">
+        <span>
+          No.
+        </span>
+      </div>
+      <div class="col-2 text-center">
+        <span>
+          Name
+        </span>
+      </div>
+      <div class="col-3 text-center">
+        <span>
+          Address
+        </span>
+      </div>
+      <div class="col-2 text-center">
+        <span>
+          IC Number
+        </span>
+      </div>
+      <div class="col-2 text-center">
+        <span>
+          Check-In
+        </span>
+      </div>
+      <div class="col-2 text-center">
+        <span>
+          Check-Out
+        </span>
+      </div>
+    </div>
+
+    <% var count = 1 %> 
+    <% qrentries.forEach(function(visitor){%>
+    <div class="row border-bottom py-3">
+      <div class="col-1 my-auto text-center">
+        <span>
+          <%= count %> 
+        </span>
+      </div>
+      <div class="col-2 my-auto text-center">
+        <span>
+          <%= visitor.name %>
+        </span>
+      </div>
+      <div class="col-3 my-auto text-center">
+        <span id="addressId"><%= visitor.address %></span>
+      </div>
+      <script>
+        $(document).ready(function(){
+            var StringToReplace = $("#addressId").text();
+            var reString = StringToReplace.replace(/\\n/g, '<br/>');
+            $("#addressId").html(reString);
+    
+        });
+    
+    </script>
+      <div class="col-2 my-auto text-center">
+        <span>
+          <%= visitor.ic %>
+        </span>
+      </div>
+      <div class="col-2 my-auto text-center">
+        <span>
+          <%= visitor.checkin %>
+        </span>
+      </div>
+      <div class="col-2 my-auto text-center">
+        <span>
+          <%= visitor.checkout %>
+        </span>
+      </div>
+    </div>
+    <% count++; %> 
+    <% }); %>
+
+  </div>
+
+  <!-- /container -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+
+  <style>
+  input{
+    margin-bottom: 15px
+  }
+  h2{
+    text-align: center
+  }
+  .container{
+    width:50%
+  }
+  </style>
+
+
+</body>
+</html>
