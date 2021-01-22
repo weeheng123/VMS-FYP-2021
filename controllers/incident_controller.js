@@ -76,6 +76,13 @@ inRoutes.post('/app/incident/get', function(req,res){
     })
 })
 
+
+inRoutes.delete("/in/delete/:id", (req, res) => {
+    client.select("*").from("incidents").where( { id: req.params.id }).del().then(function(){
+        res.redirect('/incident');
+    });
+})
+
 inRoutes.get('/incident', function(req,res){
     // res.render("incident/incident.ejs");
     if (req.session.username){
